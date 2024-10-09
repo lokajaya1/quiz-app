@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import LayoutProvider from "@/providers/LayoutProvider";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -27,14 +22,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${raleway.className} antialiased`}>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+        <body className={`${raleway.className} min-h-screen`}>
+          <LayoutProvider>{children}</LayoutProvider>
         </body>
       </html>
     </ClerkProvider>
