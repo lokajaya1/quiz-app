@@ -16,12 +16,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="md:block hidden justify-center text-nowrap items-center">
-          <span className="bg-primary px-5 py-1 rounded-md text-white">
-            Category : JavaScript
-          </span>
-        </div>
-
         <div className="flex items-center gap-3 justify-end">
           <UserMenu />
           <UserButton />

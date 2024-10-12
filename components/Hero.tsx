@@ -7,9 +7,9 @@ const Hero = () => {
       <div className="px-4 md:px-6 max-w-[1500px] mx-auto w-[90%]">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-5xl lg:text-5xl/none text-dark">
-            Ready to take this week&apos;s quiz ?
+            Welcome to Quiz App
           </h1>
-          <p className="text-gray-600">Get ready to ace it</p>
+          <p className="text-gray-600">Ready to take this quiz ?</p>
         </div>
         <div className="mt-6">
           <Link
