@@ -6,10 +6,6 @@ import { CgMenuGridO } from "react-icons/cg";
 const UserMenu = () => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
-  const useMenuHandler = () => {
-    setOpenUserMenu(!openUserMenu);
-  };
-
   const links = [
     { name: "Stats", path: "/stats" },
     { name: "Leaderboards", path: "/leaderboards" },
