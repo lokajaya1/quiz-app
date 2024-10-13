@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import UserMenu from "./UserMenu";
 import { MdQuiz } from "react-icons/md";
 import { UserButton } from "@clerk/nextjs";
 
@@ -12,12 +11,11 @@ const Navbar = () => {
         <div>
           <Link href={"/"} className="flex gap-1 items-center text-2xl">
             <h1 className="text-dark font-bold">Quiz</h1>
-            <MdQuiz className="text-primary" />
+            <MdQuiz className="text-indigo-500" />
           </Link>
         </div>
 
         <div className="flex items-center gap-3 justify-end">
-          <UserMenu />
           <UserButton />
         </div>
       </div>
