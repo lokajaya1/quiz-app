@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import StatCard from "./StatCard";
 import { saveQuizResults } from "../utils/quizStorage";
 import Loading from "@/app/quiz/loading";
@@ -27,56 +27,44 @@ const Quiz = ({ questions, userId }: QuizProps) => {
   const [timeRemaining, setTimeRemaining] = useState(15);
   const router = useRouter();
 
+  const handleAnswer = useCallback((answer: string | null) => {
+    if (checked) return;
+    
+    setSelectedAnswer(answer);
+    setChecked(true);
+    setResults((prev) => ({
+      ...prev,
+      correctAnswers: answer === questions[activeQuestion]?.correctAnswer ? prev.correctAnswers + 1 : prev.correctAnswers,
+      wrongAnswers: answer !== questions[activeQuestion]?.correctAnswer ? prev.wrongAnswers + 1 : prev.wrongAnswers,
+    }));
+  }, [activeQuestion, checked, questions]);
+
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (timeRemaining > 0 && !checked) {
       timer = setTimeout(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
-    } else if (timeRemaining === 0 && !selectedAnswer) {
-      handleTimeUp();
+    } else if (timeRemaining === 0 && !checked) {
+      handleAnswer(null);
+      toast.info("You ran out of Time!", { id: 'timeout-toast' });
     }
     return () => clearTimeout(timer);
-  }, [timeRemaining, selectedAnswer, checked]);
+  }, [timeRemaining, checked, handleAnswer]);
 
-  const resetTimer = () => {
-    setTimeRemaining(15);
-  };
-
-  const handleTimeUp = () => {
-    handleAnswer(null);
-    toast.info("You ran out of Time!");
-  };
-
-  const handleAnswer = (answer: string | null) => {
-    setSelectedAnswer(answer);
-    setChecked(true);
-    if (answer === questions[activeQuestion]?.correctAnswer) {
-      setResults((prev) => ({
-        ...prev,
-        correctAnswers: prev.correctAnswers + 1,
-      }));
-    } else {
-      setResults((prev) => ({
-        ...prev,
-        wrongAnswers: prev.wrongAnswers + 1,
-      }));
-    }
-  };
-
-  const handleNextQuestion = () => {
+  const handleNextQuestion = useCallback(() => {
     setChecked(false);
     setSelectedAnswer(null);
-    resetTimer();
+    setTimeRemaining(15);
     if (activeQuestion < questions.length - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
       setShowResults(true);
     }
-  };
+  }, [activeQuestion, questions.length]);
 
   useEffect(() => {
-    if (showResults) {
+    if (showResults && userId) {
       saveQuizResults({
         userId,
         quizScore: results.correctAnswers * 10,
@@ -113,7 +101,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               {answers.map((answer, idx) => (
                 <li
                   key={idx}
-                  onClick={() => !checked && handleAnswer(answer)}
+                  onClick={() => handleAnswer(answer)}
                   className={`cursor-pointer mb-5 py-3 rounded-md px-3
                     ${checked && (answer === correctAnswer ? "bg-green-500 text-white" : answer === selectedAnswer ? "bg-red-500 text-white" : "")}
                     ${!checked && "hover:bg-indigo-500 hover:text-white"}
