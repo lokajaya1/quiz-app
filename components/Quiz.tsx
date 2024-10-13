@@ -100,10 +100,10 @@ const Quiz = ({ questions, userId }: QuizProps) => {
         {!showResults ? (
           <>
             <div className="flex justify-between mb-10 items-center">
-              <div className="bg-primary text-white px-4 rounded-md py-1">
+              <div className="bg-indigo-500 text-white px-4 rounded-md py-1">
                 <h2>Question: {activeQuestion + 1}/{questions.length}</h2>
               </div>
-              <div className="bg-primary text-white px-4 rounded-md py-1">
+              <div className="bg-indigo-500 text-white px-4 rounded-md py-1">
                 {timeRemaining} seconds remaining
               </div>
             </div>
@@ -116,7 +116,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
                   onClick={() => !checked && handleAnswer(answer)}
                   className={`cursor-pointer mb-5 py-3 rounded-md px-3
                     ${checked && (answer === correctAnswer ? "bg-green-500 text-white" : answer === selectedAnswer ? "bg-red-500 text-white" : "")}
-                    ${!checked && "hover:bg-primary hover:text-white"}
+                    ${!checked && "hover:bg-indigo-500 hover:text-white"}
                   `}
                 >
                   <span>{answer}</span>
@@ -127,7 +127,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
             <button
               onClick={handleNextQuestion}
               disabled={!checked}
-              className="font-bold bg-primary text-white px-4 py-2 rounded-md disabled:opacity-50"
+              className="font-bold bg-indigo-500 text-white px-4 py-2 rounded-md disabled:opacity-50"
             >
               {activeQuestion === questions.length - 1 ? "Finish" : "Next Question →"}
             </button>
@@ -142,7 +142,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               <StatCard title="Score" value={`${(results.correctAnswers / questions.length) * 100}%`} />
             </div>
             <div className="mt-10 space-x-4">
-              <button onClick={() => window.location.reload()} className="font-bold uppercase bg-primary text-white px-4 py-2 rounded-md">
+              <button onClick={() => window.location.reload()} className="font-bold uppercase bg-indigo-500 text-white px-4 py-2 rounded-md">
                 Restart Quiz
               </button>
               <button onClick={handleQuitQuiz} className="font-bold uppercase bg-red-500 text-white px-4 py-2 rounded-md">
