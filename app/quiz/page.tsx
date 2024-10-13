@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import Quiz from "@/components/Quiz";
 import Loading from "./loading";
 
+interface ApiQuestion {
+  question: string;
+  incorrect_answers: string[];
+  correct_answer: string;
+}
+
 interface Question {
   question: string;
   answers: string[];
@@ -25,7 +31,7 @@ async function getQuizData(): Promise<Question[]> {
       return [];
     }
 
-    return data.results.map((question: any) => ({
+    return data.results.map((question: ApiQuestion) => ({
       question: question.question,
       answers: shuffleArray([...question.incorrect_answers, question.correct_answer]),
       correctAnswer: question.correct_answer,
@@ -58,7 +64,6 @@ const Page = () => {
 
     fetchData();
 
-    // Cleanup untuk membatalkan update state jika komponen di-unmount
     return () => {
       isMounted = false;
     };
