@@ -33,7 +33,7 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quiz-app.git
+   git clone https://github.com/lokajaya1/quiz-app.git
    cd quiz-app
    ```
 2. Install the dependencies:
