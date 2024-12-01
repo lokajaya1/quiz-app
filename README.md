@@ -4,9 +4,9 @@ A dynamic and engaging Quiz App that challenges users with various quizzes. Buil
 
 ## Screenshots
 
-![App Screenshot](./public/assets/images/qa1)
-![App Screenshot](./public/assets/images/qa2)
-![App Screenshot](./public/assets/images/qa3)
+![Home Screen](public/assets/images/qa1.png)  
+![Quiz Interface](public/assets/images/qa2.png) 
+![Quiz Interface](public/assets/images/qa3.png)
 
 ## Table of Contents
 - [Features](#features)
