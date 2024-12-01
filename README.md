@@ -2,6 +2,12 @@
 
 A dynamic and engaging Quiz App that challenges users with various quizzes. Built using Next.js, React, and Tailwind CSS, this app provides a smooth and interactive experience for users to test their knowledge.
 
+## Screenshots
+
+![App Screenshot](public/assets/images/qa1)
+![App Screenshot](public/assets/images/qa2)
+![App Screenshot](public/assets/images/qa3)
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
